@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Word {
     Letter[]  letters;
     String category;
@@ -10,5 +12,14 @@ public class Word {
             Letter letter = new Letter(character);
             this.letters[i] = letter;
         }
+    }
+
+    @Override
+    public String toString() {
+        String result = "";
+        for (int i = 0; i < letters.length; i++){
+            result += letters[i].value.toString();
+        }
+        return result;
     }
 }

@@ -18,20 +18,29 @@ public class Main {
         Player player = new Player(5);
         Game game = new Game(player, randomWord);
 
-        System.out.println("** Jogo da forca **");
-        System.out.println();
+        while (GameState.IN_GAME.equals(game.state)) {
+            System.out.println("** Jogo da forca **");
+            System.out.println();
 
-        System.out.println("Categoria: " + game.word.category);
-        System.out.println();
+            System.out.println("Categoria: " + game.word.category);
+            System.out.println();
 
-        System.out.println("Vidas: " + game.player.lives);
-        System.out.println("Letras usadas: " + game.usedLettersAsString());
-        System.out.println();
+            System.out.println("Vidas: " + game.player.lives);
+            System.out.println("Letras usadas: " + game.usedLettersAsString());
+            System.out.println();
 
-        System.out.println("A palavra é: " + game.wordAsString());
-        System.out.println("Faça uma jogada: ");
-        String play = scanner.nextLine();
+            System.out.println("A palavra é: " + game.wordAsString());
+            System.out.println("Faça uma jogada: ");
+            String input = scanner.nextLine();
 
+            Letter letter = new Letter(input.charAt(0));
+            game.play(letter);
+        }
+        if (GameState.WIN.equals(game.state)){
+            System.out.println("Você ganhou! A palavra era: " + game.word);
+        } else {
+            System.out.println("Você perdeu!");
+        }
         scanner.close();
     }
 }
